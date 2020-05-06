@@ -1,6 +1,6 @@
 class NegociacaoDao{
     
-    
+
     constructor(connection){
         this._connection = connection;
         this._store = 'negociacoes';
@@ -11,7 +11,7 @@ class NegociacaoDao{
 
             let request = this._connection
                 .transaction([this._store], 'readwrite')
-                .objetcStore(this._store)
+                .objectStore(this._store)
                 .add(negociacao);
 
                 request.onsuccess = e => {
