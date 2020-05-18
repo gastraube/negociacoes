@@ -22,7 +22,7 @@ var negociacoes = [
 
 api.listaSemana = function(req, res) {
     var negociacoesAtuais = negociacoes.filter(function(negociacao) {
-        return negociacao.data > dataAnterior;
+        return negociacao.data >= dataAnterior;
     });
     res.json(negociacoesAtuais);
 };
@@ -30,7 +30,7 @@ api.listaSemana = function(req, res) {
 api.listaAnterior = function(req, res) {
    
    var negociacoesAnteriores = negociacoes.filter(function(negociacao) {
-        return negociacao.data < dataAtual && negociacao.data > dateRetrasada;
+        return (negociacao.data > dateRetrasada && negociacao.data < dataAnterior);
     });
 	setTimeout(function() {
 		res.json(negociacoesAnteriores);	
@@ -41,7 +41,7 @@ api.listaAnterior = function(req, res) {
 api.listaRetrasada = function(req, res) {
 
    var negociacoesRtrasadas = negociacoes.filter(function(negociacao) {
-        return negociacao.data < dataAnterior;
+        return negociacao.data <= dateRetrasada;
     });
     res.json(negociacoesRtrasadas);
     
